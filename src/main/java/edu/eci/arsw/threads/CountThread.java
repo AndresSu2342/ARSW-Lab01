@@ -19,7 +19,7 @@ public class CountThread extends Thread {
 
     public void run(){
         for(int i=numA; i<=numB; i++){
-            System.out.println(i);
+            System.out.print(i + " ");
         }
     }
 }

@@ -67,5 +67,15 @@ Con lo anterior, y con los tiempos de ejecución dados, haga una gráfica de tie
 	- Se deja evidencia de la realización de los experimentos.
 	- Los análisis realizados son consistentes.
 
-![Image](https://github.com/user-attachments/assets/738bbbc5-2e36-4229-8b8b-50cf2332f45c)
-xd
+start()
+
+![Image](https://github.com/user-attachments/assets/5a735b0f-53e6-41d8-b9a3-cdb4d145548b)
+
+![Image](https://github.com/user-attachments/assets/336d3b6c-81f2-4d04-8a92-b74ac0985fb4)
+
+run()
+
+![Image](https://github.com/user-attachments/assets/3afd2aaa-ded7-4631-a87b-06318507d379)
+
+![Image](https://github.com/user-attachments/assets/194a7966-d9ee-4c79-8edd-ef3bb161dc2c)
+
