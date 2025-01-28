@@ -10,8 +10,7 @@ package edu.eci.arsw.threads;
  * @author hcadavid
  */
 public class CountThread extends Thread {
-    int numA;
-    int numB;
+    private int numA, numB;
     public CountThread(int A, int B) {
         this.numA = A;
         this.numB = B;

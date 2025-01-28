@@ -1,5 +1,8 @@
 package edu.eci.arsw.math;
 
+import java.util.ArrayList;
+import java.util.List;
+
 ///  <summary>
 ///  An implementation of the Bailey-Borwein-Plouffe formula for calculating hexadecimal
 ///  digits of pi.
@@ -11,7 +14,9 @@ public class PiDigits {
     private static int DigitsPerSum = 8;
     private static double Epsilon = 1e-17;
 
-    
+
+
+
     /**
      * Returns a range of hexadecimal digits of pi.
      * @param start The starting location of the range.
@@ -19,6 +24,7 @@ public class PiDigits {
      * @return An array containing the hexadecimal digits.
      */
     public static byte[] getDigits(int start, int count) {
+
         if (start < 0) {
             throw new RuntimeException("Invalid Interval");
         }
@@ -46,6 +52,53 @@ public class PiDigits {
 
         return digits;
     }
+
+    public static byte[] getDigits(int start, int count, int N) {
+        if (start < 0 || count < 0 || N <= 0) {
+            throw new RuntimeException("Invalid Parameters");
+        }
+
+        // Dividir el trabajo entre los hilos
+        int rangePerThread = count / N;
+        int remainder = count % N;
+
+        List<ThreadPiDigits> threads = new ArrayList<>();
+        int currentStart = start;
+
+        // Crear hilos y asignarles rangos
+        for (int i = 0; i < N; i++) {
+            int currentCount = rangePerThread + (i < remainder ? 1 : 0); // Distribuir el resto
+            ThreadPiDigits thread = new ThreadPiDigits(currentStart, currentCount);
+            threads.add(thread);
+            currentStart += currentCount;
+        }
+
+        // Iniciar los hilos
+        for (ThreadPiDigits thread : threads) {
+            thread.start();
+        }
+
+        // Esperar a que todos los hilos terminen
+        for (ThreadPiDigits thread : threads) {
+            try {
+                thread.join();
+            } catch (InterruptedException e) {
+                throw new RuntimeException("Thread interrupted", e);
+            }
+        }
+
+        // Combinar los resultados
+        byte[] result = new byte[count];
+        int index = 0;
+        for (ThreadPiDigits thread : threads) {
+            byte[] threadResult = thread.getResultPi();
+            System.arraycopy(threadResult, 0, result, index, threadResult.length);
+            index += threadResult.length;
+        }
+
+        return result;
+    }
+
 
     /// <summary>
     /// Returns the sum of 16^(n - k)/(8 * k + m) from 0 to k.
