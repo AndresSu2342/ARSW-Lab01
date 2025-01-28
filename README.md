@@ -66,3 +66,6 @@ Con lo anterior, y con los tiempos de ejecución dados, haga una gráfica de tie
 3. Análisis.
 	- Se deja evidencia de la realización de los experimentos.
 	- Los análisis realizados son consistentes.
+
+![Image](https://github.com/user-attachments/assets/738bbbc5-2e36-4229-8b8b-50cf2332f45c)
+xd
