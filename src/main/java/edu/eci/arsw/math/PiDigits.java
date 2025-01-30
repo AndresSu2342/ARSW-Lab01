@@ -53,19 +53,24 @@ public class PiDigits {
         return digits;
     }
 
+    /**
+     * Calcula los dígitos hexadecimales de pi utilizando múltiples hilos.
+     * @param start Posición inicial del rango.
+     * @param count Número de dígitos a calcular.
+     * @param N Número de hilos a utilizar.
+     * @return Un array que contiene los dígitos hexadecimales de pi.
+     */
     public static byte[] getDigits(int start, int count, int N) {
         if (start < 0 || count < 0 || N <= 0) {
             throw new RuntimeException("Invalid Parameters");
         }
 
-        // Dividir el trabajo entre los hilos
         int rangePerThread = count / N;
         int remainder = count % N;
 
         List<ThreadPiDigits> threads = new ArrayList<>();
         int currentStart = start;
 
-        // Crear hilos y asignarles rangos
         for (int i = 0; i < N; i++) {
             int currentCount = rangePerThread + (i < remainder ? 1 : 0); // Distribuir el resto
             ThreadPiDigits thread = new ThreadPiDigits(currentStart, currentCount);
@@ -73,12 +78,10 @@ public class PiDigits {
             currentStart += currentCount;
         }
 
-        // Iniciar los hilos
         for (ThreadPiDigits thread : threads) {
             thread.start();
         }
 
-        // Esperar a que todos los hilos terminen
         for (ThreadPiDigits thread : threads) {
             try {
                 thread.join();
@@ -87,7 +90,6 @@ public class PiDigits {
             }
         }
 
-        // Combinar los resultados
         byte[] result = new byte[count];
         int index = 0;
         for (ThreadPiDigits thread : threads) {
