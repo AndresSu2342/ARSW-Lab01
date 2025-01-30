@@ -80,6 +80,45 @@ consideramos que de esta manera es más fácil trabajar el código. Finalmente e
 
 **Parte III Evaluación de Desempeño**  
 
-<p align="center">
-<img src="">
-</p>
+Para esta parte, implementamos la secuencia de experimentos pedida para calcular el millon de dígitos (hex) de PI, para cada prueba documentaremos su consumo de memoria, uso promedio de CPU, hilos usados y tiempo de ejecucion
+
+1. Un solo hilo.
+![Image](https://github.com/user-attachments/assets/b9199cce-26eb-40ec-ad54-4d9151930460)
+
+![Image](https://github.com/user-attachments/assets/707473bd-886b-4e98-a364-de3fd1a5be3b)
+
+
+
+2. Tantos hilos como núcleos de procesamiento (haga que el programa determine esto haciendo uso del API Runtime).
+![Image](https://github.com/user-attachments/assets/a21b9791-534b-4144-931d-4b65d0fe6a6b)
+
+![Image](https://github.com/user-attachments/assets/8b4ac29d-3910-4aaa-b7a7-b6d2a55b31fd)
+
+![Image](https://github.com/user-attachments/assets/69bb27de-9a9e-43aa-961b-8dd5afcf9f38)
+
+
+
+3. Tantos hilos como el doble de núcleos de procesamiento.
+![Image](https://github.com/user-attachments/assets/af72e463-d1ca-401d-b0c5-050be868f65d)
+
+![Image](https://github.com/user-attachments/assets/f3d08652-4a03-43ae-80a5-8a2796bb409a)
+
+4. 200 hilos.
+![Image](https://github.com/user-attachments/assets/8bf14923-a575-4eb1-a03b-0b580007cc3e)
+
+![Image](https://github.com/user-attachments/assets/416e9214-8ded-4759-aab8-6eff91d15bc4)
+
+5. 500 hilos.
+![Image](https://github.com/user-attachments/assets/78dc38b4-8c04-4203-8fc5-de84448a1ad5)
+
+![Image](https://github.com/user-attachments/assets/a17f1bfd-b36d-45d7-989e-6a25149a2def)
+
+Para recopilar la informacion dada de mejor forma, haremos una tabla de resultados
+
+| Configuración | Tiempo de ejecución (ms) | Uso de CPU (%) | Memoria usada (MB) |
+|--------------|--------------------|--------------|----------------|
+| 1 Hilo       | XXXX               | XX%          | XXX MB         |
+| N Núcleos    | XXXX               | XX%          | XXX MB         |
+| 2N Núcleos   | XXXX               | XX%          | XXX MB         |
+| 200 Hilos    | XXXX               | XX%          | XXX MB         |
+| 500 Hilos    | XXXX               | XX%          | XXX MB         |
